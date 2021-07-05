@@ -7,52 +7,65 @@ import org.openqa.selenium.WebElement;
 
 public class Match {
 	WebElement eventElement;
-	String homeTeam;
-	String awayTeam;
-	String awayWin;
-	String homeWin;
-	String draw;
+	SportsPage page;
+	String homeTeamName;
+	String awayTeamName;
+	String awayWinDisplayedOdds;
+	String homeWinDisplayedOdds;
+	String drawDisplayedOdds;
 
-	public Match(WebElement event) {
+	public Match(WebElement event, SportsPage pageObject) {
 		this.eventElement = event;
-		this.setTeams();
+		this.page = pageObject;
+		this.setTeamNames();
 		this.setOdds();
 	}
 	
-	
+	/**
+	 * Checks the number of bet option buttons to determine if the type of event has the potential for a 
+	 * draw e.g. a soccer match, or if win/lose is the only possibility e.g basketball. In the scenarios
+	 * where there are only two bet options, then only awayWinDisplayedOdds and homeWinDisplayedOdds will be 
+	 * set.  In the scenario where there are 3 betting options, then drawDisplayedOdds will also be set.
+	 * Note that in order for this method to work with other sports, it is assumed that bet buttons for those
+	 * sports will also have the class "preplay-bet-button". If not then the method can be easily adjusted
+	 * to use different selectors.
+	 */
 	private void setOdds() {
-		List <WebElement> betOptions = eventElement.findElements(By.cssSelector(".preplay-bet-button"));
+		List <WebElement> betOptions = page.getBetButtons(eventElement);
 		if (betOptions.size() == 3) {
-			System.out.println("Printing number of bet options" + betOptions.size());
-			this.homeWin = betOptions.get(0).getText();
-			this.draw = betOptions.get(1).getText();
-			this.awayWin = betOptions.get(2).getText();
-		}		
+			this.homeWinDisplayedOdds = betOptions.get(0).getText();
+			this.drawDisplayedOdds = betOptions.get(1).getText();
+			this.awayWinDisplayedOdds = betOptions.get(2).getText();
+		}
+		else if(betOptions.size() == 2) {
+			this.homeWinDisplayedOdds = betOptions.get(0).getText();
+			this.awayWinDisplayedOdds = betOptions.get(1).getText();
+		}
 	}
 	
-	private void setTeams() {
-		this.homeTeam = eventElement.findElement(By.cssSelector(".competitor-home")).getText();
-		this.awayTeam = eventElement.findElement(By.cssSelector(".competitor-away")).getText();
+	private void setTeamNames() {
+		this.homeTeamName = page.getHomeTeamName(eventElement);
+		this.awayTeamName = page.getAwayTeamName(eventElement);
 	}
 	
-	public String getHomeTeam() {
-		return this.homeTeam;
+	public String getHomeTeamName() {
+		return this.homeTeamName;
 	}
 	
-	public String getAwayTeam() {
-		return this.awayTeam;
+	public String getAwayTeamName() {
+		return this.awayTeamName;
 	}
 	
 	
-	public String getAwayWin() {
-		return this.awayWin;
+	public String getAwayWinDisplayedOdds() {
+		return this.awayWinDisplayedOdds;
 	}
 	
-	public String getDraw() {
-		return this.draw;
+	public String getDrawDisplayedOdds() {
+		return this.drawDisplayedOdds;
 	}
 	
-	public String getHomeWin() {
-		return this.homeWin;
+	public String getHomeWinDisplayedOdds() {
+		return this.homeWinDisplayedOdds;
 	}
 }
