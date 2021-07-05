@@ -1,6 +1,7 @@
 package tests;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,8 +23,10 @@ public class BasketballHomeTest extends BaseTest{
 	public void loadEuroHome() {
 		System.setProperty("webdriver.chrome.driver", DRIVER_PATH);
 		driver = new ChromeDriver();
-		driver.get("https://www.888sport.com/basketball/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		basketballHome = new BasketballHomePage(driver);
+		driver.get(BASE_URL + "basketball/");
+		
 	}
 	
 	@AfterClass
@@ -44,13 +47,13 @@ public class BasketballHomeTest extends BaseTest{
 	}
 	
 	@Test
-	public void teamListedTomorrow() {
+	public void teamNotListedTomorrow() {
 		List <Match> matches = getMatchesByDay(basketballHome, "Tomorrow");
 		for(Match match: matches) {
 			String homeTeam = match.getHomeTeamName().toUpperCase();
 			String awayTeam = match.getAwayTeamName().toUpperCase();
-			Assert.assertEquals(homeTeam, "SAN ISIDRO");
-			//Assert.assertNotEquals(awayTeam, "IRELAND");
+			Assert.assertNotEquals(homeTeam, "LA LAKERS");
+			Assert.assertNotEquals(awayTeam, "LA LAKERS");
 		}
 		
 	}

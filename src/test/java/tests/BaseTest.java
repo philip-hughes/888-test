@@ -13,7 +13,13 @@ import pageObjects.SportsPage;
 public class BaseTest {
 	
 	public static final String DRIVER_PATH = "/Users/Phugh/OneDrive/Documents/test-automation/chromedriver.exe";
+	public static final String BASE_URL = "https://www.888sport.com/";
 	
+	/**
+	 * Test to verify that the odds are strictly in the N/N format where N is numerical. There is also
+	 * a check to verify that there is only one /.  This is just an edge case check to ensure correct format.
+	 * 
+	 */
 	public static void isFractional(String odds) {
 
 		int slashOccurance = StringUtils.countMatches(odds, "/");
@@ -46,6 +52,14 @@ public class BaseTest {
 
 	}
 	
+	/**
+	 * A function that returns a List of matches for a given day, or for all days. 
+	 * When passing the 'day' argument, any weekday is accepted, or if you wish to get
+	 * all days pass 'All' as the argument.
+	 * @param pageObject
+	 * @param day
+	 * @return
+	 */
 	public static List<Match> getMatchesByDay(SportsPage pageObject, String day){
 		List<WebElement> eventElements = new ArrayList<WebElement>();
 		List<WebElement> sections = pageObject.getSections();
