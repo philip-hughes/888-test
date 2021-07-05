@@ -12,7 +12,7 @@ import utils.Match;
 
 public class BaseTest {
 	
-	public static final String DRIVER_PATH = "/Users/Phugh/OneDrive/Documents/test-automation/chromedriver.exe";
+	public static final String DRIVER_PATH = "";
 	public static final String BASE_URL = "https://www.888sport.com/";
 	
 	/**
