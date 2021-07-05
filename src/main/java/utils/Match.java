@@ -1,9 +1,11 @@
-package pageObjects;
+package utils;
 
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import pageObjects.SportsPage;
 
 public class Match {
 	WebElement betCardElement;

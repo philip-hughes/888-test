@@ -15,7 +15,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import pageObjects.EuroHomePage;
-import pageObjects.Match;
+import utils.Match;
 
 public class EuroHomeTest extends BaseTest {
 	

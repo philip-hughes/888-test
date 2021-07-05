@@ -11,8 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import pageObjects.BasketballHomePage;
-import pageObjects.EuroHomePage;
-import pageObjects.Match;
+import utils.Match;
 
 public class BasketballHomeTest extends BaseTest{
 	WebDriver driver;

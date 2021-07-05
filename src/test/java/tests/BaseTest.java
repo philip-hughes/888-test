@@ -7,8 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import pageObjects.Match;
 import pageObjects.SportsPage;
+import utils.Match;
 
 public class BaseTest {
 	
