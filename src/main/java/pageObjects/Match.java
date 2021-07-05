@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class Match {
-	WebElement eventElement;
+	WebElement betCardElement;
 	SportsPage page;
 	String homeTeamName;
 	String awayTeamName;
@@ -14,8 +14,8 @@ public class Match {
 	String homeWinDisplayedOdds;
 	String drawDisplayedOdds;
 
-	public Match(WebElement event, SportsPage pageObject) {
-		this.eventElement = event;
+	public Match(WebElement betCard, SportsPage pageObject) {
+		this.betCardElement = betCard;
 		this.page = pageObject;
 		this.setTeamNames();
 		this.setOdds();
@@ -31,7 +31,7 @@ public class Match {
 	 * to use different selectors.
 	 */
 	private void setOdds() {
-		List <WebElement> betOptions = page.getBetButtons(eventElement);
+		List <WebElement> betOptions = page.getBetButtons(betCardElement);
 		if (betOptions.size() == 3) {
 			this.homeWinDisplayedOdds = betOptions.get(0).getText();
 			this.drawDisplayedOdds = betOptions.get(1).getText();
@@ -44,8 +44,8 @@ public class Match {
 	}
 	
 	private void setTeamNames() {
-		this.homeTeamName = page.getHomeTeamName(eventElement);
-		this.awayTeamName = page.getAwayTeamName(eventElement);
+		this.homeTeamName = page.getHomeTeamName(betCardElement);
+		this.awayTeamName = page.getAwayTeamName(betCardElement);
 	}
 	
 	public String getHomeTeamName() {
@@ -55,8 +55,7 @@ public class Match {
 	public String getAwayTeamName() {
 		return this.awayTeamName;
 	}
-	
-	
+		
 	public String getAwayWinDisplayedOdds() {
 		return this.awayWinDisplayedOdds;
 	}

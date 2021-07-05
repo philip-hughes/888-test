@@ -1,6 +1,5 @@
 package pageObjects;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -14,11 +13,12 @@ public class EuroHomePage implements SportsPage{
 	public EuroHomePage(WebDriver driver) {
 		this.driver = driver;
 	}
+	
 	By selectedTab = By.cssSelector("li[data-selected-item='true']");
 	By matchResultTab = By.cssSelector("li[data-item-slug='match-result']");
 	By section = By.cssSelector(".panel-body-section");
 	By sectionDay = By.className("cell-body");
-	By event = By.cssSelector(".sport-event");
+	By betCard = By.cssSelector(".sport-event");
 	By betButton = By.cssSelector(".preplay-bet-button");
 	By homeTeam = By.cssSelector(".competitor-home");
 	By awayTeam = By.cssSelector(".competitor-away");
@@ -33,26 +33,25 @@ public class EuroHomePage implements SportsPage{
 		return driver.findElements(section);
 	}
 	
-	public List<WebElement> getEvents(WebElement section){		
+	public List<WebElement> getBetCards(WebElement section){		
 		
-		return driver.findElements(event);
+		return driver.findElements(betCard);
 	}
 
 	public String getSectionDay(WebElement section) {
-		 String day = driver.findElement(sectionDay).getText();
-		return day;
-		
+		String day = driver.findElement(sectionDay).getText();
+		return day;		
 	}
 	
-	public List<WebElement> getBetButtons(WebElement event){
-		return event.findElements(betButton);
+	public List<WebElement> getBetButtons(WebElement betCard){
+		return betCard.findElements(betButton);
 	}
 	
-	public String getHomeTeamName(WebElement event) {
-		return event.findElement(homeTeam).getText();
+	public String getHomeTeamName(WebElement betCard) {
+		return betCard.findElement(homeTeam).getText();
 	}
 	
-	public String getAwayTeamName(WebElement event) {
-		return event.findElement(awayTeam).getText();
+	public String getAwayTeamName(WebElement betCard) {
+		return betCard.findElement(awayTeam).getText();
 	}
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -43,8 +42,6 @@ public class BaseTest {
 		int denominator = Integer.parseInt(oddsArray[1]);
 		float decimalOdds = ((float) numerator / denominator) + 1;
 
-		System.out.println("Numerator: " + numerator + " Denominator: " + denominator);
-
 		return decimalOdds;
 
 	}
@@ -55,14 +52,14 @@ public class BaseTest {
 		
 		if(day.equalsIgnoreCase("All")) {
 			for(WebElement e: sections) {
-				eventElements.addAll(pageObject.getEvents(e));			
+				eventElements.addAll(pageObject.getBetCards(e));			
 			}
 		}
 		else {
 			for(WebElement e: sections) {
 				String sectionDay = pageObject.getSectionDay(e);
 				if(sectionDay.toLowerCase().contains(day.toLowerCase())) {
-					eventElements.addAll(pageObject.getEvents(e));
+					eventElements.addAll(pageObject.getBetCards(e));
 				}			
 			}			
 		}

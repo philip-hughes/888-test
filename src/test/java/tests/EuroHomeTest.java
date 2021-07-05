@@ -38,9 +38,8 @@ public class EuroHomeTest extends BaseTest {
 		
 	@Test
 	public void tabTest() {
-		euroHome.matchResultTab();
 		String attr = euroHome.matchResultTab().getAttribute("data-selected-item");
-		Assert.assertEquals("true", attr);
+		Assert.assertEquals(attr, "true");
 	}
 	
 	@Test
@@ -68,8 +67,7 @@ public class EuroHomeTest extends BaseTest {
 	}
 	
 	@Test
-	public void checkHomeOddsForCountry() {
-		
+	public void checkHomeOddsForCountry() {		
 		float maxOdds = convertToDecimal("3/2");
 		List <Match> matches = getMatchesByDay(euroHome, "All");
 		for(Match match: matches) {

@@ -14,7 +14,6 @@ import pageObjects.EuroHomePage;
 import pageObjects.Match;
 
 public class BasketballHomeTest extends BaseTest{
-	//public static final String DRIVER_PATH = "/Users/Phugh/OneDrive/Documents/test-automation/chromedriver.exe";
 	WebDriver driver;
 	BasketballHomePage basketballHome;
 	

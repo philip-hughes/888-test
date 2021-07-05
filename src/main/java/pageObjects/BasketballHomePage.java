@@ -15,7 +15,7 @@ public class BasketballHomePage implements SportsPage {
 	
 	By section = By.className("bb-content-section");
 	By sectionDay = By.cssSelector(".bb-content-section__title-container > .bb-content-section__title-item:first-child");
-	By event = By.cssSelector(".bet-card");
+	By betCard = By.cssSelector(".bet-card");
 	By betButton = By.cssSelector(".bet-button");
 	By homeTeam = By.cssSelector(".featured-matches-widget__event-link> span:first-child");
 	By awayTeam = By.cssSelector(".featured-matches-widget__event-link > span:nth-child(2)");
@@ -26,9 +26,9 @@ public class BasketballHomePage implements SportsPage {
 		return driver.findElements(section);
 	}
 	
-	public List<WebElement> getEvents(WebElement section){		
+	public List<WebElement> getBetCards(WebElement section){		
 		
-		return driver.findElements(event);
+		return driver.findElements(betCard);
 	}
 
 	public String getSectionDay(WebElement section) {
@@ -37,16 +37,16 @@ public class BasketballHomePage implements SportsPage {
 		
 	}
 
-	public List<WebElement> getBetButtons(WebElement event){
-		return event.findElements(betButton);
+	public List<WebElement> getBetButtons(WebElement betCard){
+		return betCard.findElements(betButton);
 	}
 	
-	public String getHomeTeamName(WebElement event) {
-		return event.findElement(homeTeam).getText();
+	public String getHomeTeamName(WebElement betCard) {
+		return betCard.findElement(homeTeam).getText();
 	}
 	
-	public String getAwayTeamName(WebElement event) {
-		return event.findElement(awayTeam).getText();
+	public String getAwayTeamName(WebElement betCard) {
+		return betCard.findElement(awayTeam).getText();
 	}
 
 }
